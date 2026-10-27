@@ -1,0 +1,929 @@
+<!-- ... existing code ... -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP FITNESS | Elite Personal Training & Coaching</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            card: '#1a1a1a',
+                            border: '#2a2a2a',
+                            neon: '#e5ff00',
+                            neonHover: '#ccf000',
+                            orange: '#ff3b00',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['Teko', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles & Utilities */
+        body {
+            background-color: #0a0a0a;
+            color: #f3f4f6;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(229, 255, 0, 0.4);
+        }
+
+        .text-glow-orange {
+            text-shadow: 0 0 20px rgba(255, 59, 0, 0.5);
+        }
+
+        .box-glow {
+            box-shadow: 0 0 25px -5px rgba(229, 255, 0, 0.15);
+        }
+
+        .box-glow-orange {
+            box-shadow: 0 0 25px -5px rgba(255, 59, 0, 0.25);
+        }
+
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-bg {
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.85) 70%, #0a0a0a 100%), 
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .cta-gradient {
+            background: linear-gradient(135deg, #e5ff00 0%, #a3cd00 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e5ff00;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-neon selection:text-black">
+
+    <!-- Header / Navigation -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-4 sm:px-8 border-b border-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-brand-neon rounded-lg flex items-center justify-center font-black text-black text-2xl font-display transform group-hover:rotate-6 transition-transform">
+                    V
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display text-2xl font-bold tracking-wider leading-none text-white">VICTOR<span class="text-brand-neon">STORM</span></span>
+                    <span class="text-[9px] tracking-[0.2em] text-gray-400 font-semibold uppercase">Personal Trainer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-300">
+                <a href="#about" class="hover:text-brand-neon transition-colors">About</a>
+                <a href="#methodology" class="hover:text-brand-neon transition-colors">Methodology</a>
+                <a href="#results" class="hover:text-brand-neon transition-colors">Results</a>
+                <a href="#calculator" class="hover:text-brand-neon transition-colors">Fit Calculator</a>
+                <a href="#pricing" class="hover:text-brand-neon transition-colors">Plans</a>
+                <a href="#faq" class="hover:text-brand-neon transition-colors">FAQ</a>
+            </nav>
+
+            <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-brand-neon hover:bg-brand-neonHover text-black font-bold px-5 py-2.5 rounded-lg text-sm transition-all transform hover:scale-105 shadow-lg shadow-brand-neon/20">
+                <i class="fa-brands font-semibold fa-whatsapp text-lg"></i>
+                <span>START NOW</span>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Dropping Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-brand-dark/95 backdrop-blur-xl border-b border-brand-border p-6 flex-col gap-4 text-center font-semibold text-gray-200 shadow-2xl">
+            <a href="#about" class="mobile-link py-2 hover:text-brand-neon">About</a>
+            <a href="#methodology" class="mobile-link py-2 hover:text-brand-neon">Methodology</a>
+            <a href="#results" class="mobile-link py-2 hover:text-brand-neon">Results</a>
+            <a href="#calculator" class="mobile-link py-2 hover:text-brand-neon">Fit Calculator</a>
+            <a href="#pricing" class="mobile-link py-2 hover:text-brand-neon">Plans</a>
+            <a href="#faq" class="mobile-link py-2 hover:text-brand-neon">FAQ</a>
+            <a href="#contact" class="mobile-link mt-2 bg-brand-neon text-black font-bold py-3 rounded-lg flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Chat on WhatsApp</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-bg min-h-screen pt-32 pb-20 px-4 sm:px-8 flex items-center relative overflow-hidden">
+        <!-- Ambient Decorative Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-neon/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-brand-orange/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-neon/10 border border-brand-neon/30 text-brand-neon text-xs font-bold uppercase tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-brand-neon animate-ping"></span>
+                    Limited Coaching Spots Available
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black font-display tracking-tight uppercase leading-[0.95] text-white">
+                    TRANSFORM YOUR <span class="text-brand-neon text-glow">BODY</span>.<br>
+                    DOMINATE YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">MIND</span>.
+                </h1>
+
+                <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                    High-performance training and nutrition methodology designed for rapid muscle building, fat loss, and peak aesthetics. Real science, no fad diets, proven results.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                    <a href="#contact" class="cta-gradient text-black font-extrabold text-base px-8 py-4 rounded-xl shadow-xl hover:shadow-brand-neon/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                        <span>BOOK A FREE EVALUATION</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#results" class="glass-panel text-white hover:bg-white/10 font-bold text-base px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2 border border-white/10">
+                        <i class="fa-solid fa-play text-brand-neon text-xs"></i>
+                        <span>See Transformations</span>
+                    </a>
+                </div>
+
+                <!-- Social Proof Badges -->
+                <div class="pt-10 grid grid-cols-3 gap-4 border-t border-white/10 max-w-lg mx-auto lg:mx-0">
+                    <div>
+                        <p class="font-display text-3xl sm:text-4xl font-bold text-brand-neon">+500</p>
+                        <p class="text-xs text-gray-400 font-semibold uppercase">Clients Coached</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-3xl sm:text-4xl font-bold text-white">10 Years</p>
+                        <p class="text-xs text-gray-400 font-semibold uppercase">Of Experience</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-3xl sm:text-4xl font-bold text-brand-neon">98%</p>
+                        <p class="text-xs text-gray-400 font-semibold uppercase">Success Rate</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Hero Floating Card Media -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <!-- Outer Decorative Ring -->
+                    <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-neon to-brand-orange opacity-30 blur-lg"></div>
+                    
+                    <div class="relative rounded-2xl overflow-hidden bg-brand-card border border-brand-border">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop" alt="Elite Personal Trainer" class="w-full h-[480px] object-cover object-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        
+                        <!-- Floating Badge 1 -->
+                        <div class="absolute bottom-6 left-6 right-6 glass-panel p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-brand-neon/20 flex items-center justify-center text-brand-neon text-xl font-bold">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Certified Master Trainer</h4>
+                                <p class="text-xs text-gray-400">Exercise Physiology & Fat Loss Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT THE TRAINER -->
+    <section id="about" class="py-24 px-4 sm:px-8 bg-brand-dark border-t border-brand-border relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5">
+                    <div class="relative">
+                        <div class="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-brand-neon"></div>
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-brand-neon"></div>
+                        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=800&auto=format&fit=crop" alt="Victor Storm Personal Trainer" class="rounded-xl w-full h-[500px] object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-block px-3 py-1 rounded bg-brand-neon/10 text-brand-neon text-xs font-bold uppercase tracking-widest">
+                        Your Head Coach
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-white">
+                        MEET <span class="text-brand-neon">VICTOR STORM</span>
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed font-normal">
+                        With over a decade dedicated to bodybuilding, athletic prep, and coaching high-performing executives, I created a methodology designed for maximum efficiency. My goal is not just to give you a workout plan—it's to overhaul your mindset and discipline.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        Generic routines yield generic results. To achieve a lasting, impressive physique, we combine precise biomechanics, tailored nutrition strategies, and non-negotiable consistency.
+                    </p>
+
+                    <!-- Credentials Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-brand-card border border-brand-border">
+                            <i class="fa-solid fa-award text-brand-neon text-xl"></i>
+                            <div>
+                                <h5 class="text-xs text-gray-400">Certification</h5>
+                                <p class="text-sm font-bold text-white">NSCA & NASM CPT</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-lg bg-brand-card border border-brand-border">
+                            <i class="fa-solid fa-graduation-cap text-brand-neon text-xl"></i>
+                            <div>
+                                <h5 class="text-xs text-gray-400">Post-Graduate Degree</h5>
+                                <p class="text-sm font-bold text-white">Exercise Physiology</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="#contact" class="inline-flex items-center gap-2 font-bold text-brand-neon hover:text-white transition-colors">
+                            <span>LEARN MORE ABOUT COACHING</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY / PILLARS -->
+    <section id="methodology" class="py-24 px-4 sm:px-8 bg-brand-black relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="px-3 py-1 rounded bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-widest">
+                    Pure Science. Zero Guesswork.
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-black font-display uppercase tracking-tight text-white">
+                    THE 4 PILLARS OF <span class="text-brand-neon">TRANSFORMATION</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base">
+                    A complete system engineered to eliminate trial-and-error, ensuring every hour in the gym translates into muscle growth and body fat reduction.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Pillar 1 -->
+                <div class="bg-brand-card border border-brand-border p-8 rounded-2xl hover:border-brand-neon transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-neon/5 rounded-bl-full group-hover:bg-brand-neon/10 transition-colors"></div>
+                    <div class="w-14 h-14 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-neon text-2xl font-bold mb-6 group-hover:border-brand-neon transition-colors">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">1. Custom Workouts</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Customized training splits tailored to your biomechanics, injury history, and specific physique goals.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-brand-card border border-brand-border p-8 rounded-2xl hover:border-brand-neon transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-neon/5 rounded-bl-full group-hover:bg-brand-neon/10 transition-colors"></div>
+                    <div class="w-14 h-14 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-neon text-2xl font-bold mb-6 group-hover:border-brand-neon transition-colors">
+                        <i class="fa-solid fa-apple-whole"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">2. Targeted Nutrition</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Flexible meal planning that seamlessly fits your work and social lifestyle without extreme, unsustainable restrictions.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-brand-card border border-brand-border p-8 rounded-2xl hover:border-brand-neon transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-neon/5 rounded-bl-full group-hover:bg-brand-neon/10 transition-colors"></div>
+                    <div class="w-14 h-14 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-neon text-2xl font-bold mb-6 group-hover:border-brand-neon transition-colors">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">3. 24/7 Direct Support</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Direct messaging line to your coach for form checks, weight adjustments, and daily accountability.
+                    </p>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="bg-brand-card border border-brand-border p-8 rounded-2xl hover:border-brand-neon transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-neon/5 rounded-bl-full group-hover:bg-brand-neon/10 transition-colors"></div>
+                    <div class="w-14 h-14 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-neon text-2xl font-bold mb-6 group-hover:border-brand-neon transition-colors">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">4. Mindset & Drive</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Bi-weekly metric reviews and psychological check-ins to build unshakeable discipline and focus.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS / BEFORE & AFTER -->
+    <section id="results" class="py-24 px-4 sm:px-8 bg-brand-dark border-t border-brand-border">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="px-3 py-1 rounded bg-brand-neon/10 text-brand-neon text-xs font-bold uppercase tracking-widest">
+                    Real Proof
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-black font-display uppercase tracking-tight text-white">
+                    CLIENT <span class="text-brand-neon">TRANSFORMATIONS</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base">
+                    Everyday people who committed to changing their lives. Here is what is possible with the right guidance.
+                </p>
+            </div>
+
+            <!-- Transformation Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden group">
+                    <div class="relative h-72 bg-black overflow-hidden flex">
+                        <div class="w-1/2 h-full relative border-r border-brand-border">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover opacity-75 grayscale" alt="Before">
+                            <span class="absolute bottom-2 left-2 bg-black/80 px-2 py-1 rounded text-[10px] font-bold text-gray-300">BEFORE</span>
+                        </div>
+                        <div class="w-1/2 h-full relative">
+                            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="After">
+                            <span class="absolute bottom-2 right-2 bg-brand-neon px-2 py-1 rounded text-[10px] font-bold text-black">AFTER</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-white text-lg">Lucas A., 32 yrs</h4>
+                            <span class="text-xs bg-brand-neon/10 text-brand-neon px-2.5 py-1 rounded-full font-bold">-30 lbs in 90 Days</span>
+                        </div>
+                        <p class="text-gray-400 text-xs italic">
+                            "I thought I didn't have time to work out with my corporate schedule. Victor streamlined my routine to 45 mins a day and the results were unreal."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden group">
+                    <div class="relative h-72 bg-black overflow-hidden flex">
+                        <div class="w-1/2 h-full relative border-r border-brand-border">
+                            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover opacity-75 grayscale" alt="Before">
+                            <span class="absolute bottom-2 left-2 bg-black/80 px-2 py-1 rounded text-[10px] font-bold text-gray-300">BEFORE</span>
+                        </div>
+                        <div class="w-1/2 h-full relative">
+                            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="After">
+                            <span class="absolute bottom-2 right-2 bg-brand-neon px-2 py-1 rounded text-[10px] font-bold text-black">AFTER</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-white text-lg">Mariana S., 28 yrs</h4>
+                            <span class="text-xs bg-brand-neon/10 text-brand-neon px-2.5 py-1 rounded-full font-bold">+11 lbs Lean Muscle</span>
+                        </div>
+                        <p class="text-gray-400 text-xs italic">
+                            "I was naturally very skinny and struggled to build tone. Within 6 months I built athletic curve and muscle definition. Highly recommended!"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden group">
+                    <div class="relative h-72 bg-black overflow-hidden flex">
+                        <div class="w-1/2 h-full relative border-r border-brand-border">
+                            <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover opacity-75 grayscale" alt="Before">
+                            <span class="absolute bottom-2 left-2 bg-black/80 px-2 py-1 rounded text-[10px] font-bold text-gray-300">BEFORE</span>
+                        </div>
+                        <div class="w-1/2 h-full relative">
+                            <img src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="After">
+                            <span class="absolute bottom-2 right-2 bg-brand-neon px-2 py-1 rounded text-[10px] font-bold text-black">AFTER</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-white text-lg">Rodrigo M., 41 yrs</h4>
+                            <span class="text-xs bg-brand-neon/10 text-brand-neon px-2.5 py-1 rounded-full font-bold">Six-Pack Abs</span>
+                        </div>
+                        <p class="text-gray-400 text-xs italic">
+                            "At 41 I achieved the best shape of my life. Online coaching turned out to be far more effective than traditional in-person trainers."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE FIT CALCULATOR -->
+    <section id="calculator" class="py-24 px-4 sm:px-8 bg-brand-black border-t border-brand-border">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-brand-border box-glow">
+                
+                <div class="text-center space-y-3 mb-10">
+                    <span class="px-3 py-1 rounded bg-brand-neon/10 text-brand-neon text-xs font-bold uppercase tracking-widest">
+                        Free Tool
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-white">
+                        BMI & CALORIE <span class="text-brand-neon">CALCULATOR</span>
+                    </h2>
+                    <p class="text-gray-400 text-xs sm:text-sm">
+                        Calculate your daily caloric needs and start your custom plan today.
+                    </p>
+                </div>
+
+                <!-- Form Controls -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Gender</label>
+                        <select id="calc-gender" class="w-full bg-brand-dark border border-brand-border rounded-xl p-3 text-white focus:border-brand-neon focus:outline-none">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Age (yrs)</label>
+                        <input type="number" id="calc-age" value="28" placeholder="Ex: 28" class="w-full bg-brand-dark border border-brand-border rounded-xl p-3 text-white focus:border-brand-neon focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Weight (kg)</label>
+                        <input type="number" id="calc-weight" value="80" placeholder="Ex: 80" class="w-full bg-brand-dark border border-brand-border rounded-xl p-3 text-white focus:border-brand-neon focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Height (cm)</label>
+                        <input type="number" id="calc-height" value="178" placeholder="Ex: 178" class="w-full bg-brand-dark border border-brand-border rounded-xl p-3 text-white focus:border-brand-neon focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Activity Level</label>
+                    <select id="calc-activity" class="w-full bg-brand-dark border border-brand-border rounded-xl p-3 text-white focus:border-brand-neon focus:outline-none">
+                        <option value="1.2">Sedentary (little to no exercise)</option>
+                        <option value="1.375">Lightly Active (light exercise 1-3 days/wk)</option>
+                        <option value="1.55" selected>Moderately Active (exercise 3-5 days/wk)</option>
+                        <option value="1.725">Very Active (hard exercise 6-7 days/wk)</option>
+                    </select>
+                </div>
+
+                <button onclick="calculateFitMetrics()" class="w-full bg-brand-neon hover:bg-brand-neonHover text-black font-extrabold py-4 rounded-xl transition-all font-display text-xl tracking-wider uppercase mb-8 shadow-lg shadow-brand-neon/20">
+                    CALCULATE MY METRICS
+                </button>
+
+                <!-- Calculation Results Display -->
+                <div id="calc-results" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-brand-border text-center">
+                    <div class="p-4 bg-brand-dark/80 rounded-xl border border-brand-border">
+                        <span class="text-xs text-gray-400 block mb-1">Your BMI</span>
+                        <span id="res-imc" class="text-3xl font-black text-white font-display">25.2</span>
+                        <span id="res-imc-status" class="text-[10px] uppercase font-bold text-brand-neon block mt-1">Slightly Overweight</span>
+                    </div>
+                    <div class="p-4 bg-brand-dark/80 rounded-xl border border-brand-border">
+                        <span class="text-xs text-gray-400 block mb-1">Basal Metabolic Rate</span>
+                        <span id="res-tmb" class="text-3xl font-black text-white font-display">1820</span>
+                        <span class="text-[10px] uppercase font-bold text-gray-400 block mt-1">Kcal / Day at rest</span>
+                    </div>
+                    <div class="p-4 bg-brand-dark/80 rounded-xl border border-brand-border">
+                        <span class="text-xs text-gray-400 block mb-1">Total Daily Energy Expenditure</span>
+                        <span id="res-tdee" class="text-3xl font-black text-brand-neon font-display">2821</span>
+                        <span class="text-[10px] uppercase font-bold text-gray-400 block mt-1">Kcal to maintain weight</span>
+                    </div>
+                </div>
+
+                <!-- Custom CTA Output -->
+                <div id="calc-cta" class="hidden mt-6 text-center">
+                    <a id="calc-whatsapp-btn" href="#" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>SEND MY RESULTS TO COACH VICTOR</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING & PLANS -->
+    <section id="pricing" class="py-24 px-4 sm:px-8 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="px-3 py-1 rounded bg-brand-neon/10 text-brand-neon text-xs font-bold uppercase tracking-widest">
+                    Invest in Yourself
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-black font-display uppercase tracking-tight text-white">
+                    CHOOSE YOUR <span class="text-brand-neon">GAME PLAN</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base">
+                    Programs structured for different levels of coaching and support. Spots strictly limited per month.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Plan 1: Standard Coaching -->
+                <div class="bg-brand-card border border-brand-border rounded-3xl p-8 flex flex-col justify-between hover:border-gray-500 transition-all">
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-white uppercase mb-2">Standard Online Coaching</h3>
+                        <p class="text-xs text-gray-400 mb-6">For self-motivated individuals seeking a structured regimen.</p>
+                        
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-sm font-bold text-gray-400">$</span>
+                            <span class="text-4xl font-black text-white font-display">69</span>
+                            <span class="text-xs text-gray-400">/ month</span>
+                        </div>
+
+                        <ul class="space-y-4 text-xs text-gray-300 border-t border-brand-border pt-6 mb-8">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>100% Customized App Workout Plan</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>HD exercise video library</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>Monthly workout routine updates</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>In-app Q&A support</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="w-full bg-brand-dark hover:bg-white/10 text-white border border-brand-border font-bold py-3.5 rounded-xl text-center text-xs uppercase tracking-wider transition-all">
+                        Secure Spot
+                    </a>
+                </div>
+
+                <!-- Plan 2: VIP Coaching (Highlighted) -->
+                <div class="bg-brand-card border-2 border-brand-neon rounded-3xl p-8 flex flex-col justify-between relative box-glow transform md:-translate-y-4">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-neon text-black font-extrabold text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
+                        Most Popular / Recommended
+                    </div>
+
+                    <div>
+                        <h3 class="font-display text-3xl font-bold text-white uppercase mb-2">VIP Premium Coaching</h3>
+                        <p class="text-xs text-gray-300 mb-6">All-inclusive 1-on-1 workout & nutrition coaching with high touchpoints.</p>
+                        
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-sm font-bold text-gray-400">$</span>
+                            <span class="text-5xl font-black text-brand-neon font-display">129</span>
+                            <span class="text-xs text-gray-400">/ month</span>
+                        </div>
+
+                        <ul class="space-y-4 text-xs text-gray-200 border-t border-brand-border pt-6 mb-8">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>Everything in Standard Plan</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span><strong>Flexible Custom Meal Blueprint</strong></span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>Direct 24/7 WhatsApp Access to Coach</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>Bi-weekly video form breakdowns</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>Targeted Supplement Protocol</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="w-full bg-brand-neon hover:bg-brand-neonHover text-black font-extrabold py-4 rounded-xl text-center text-xs uppercase tracking-wider transition-all shadow-lg shadow-brand-neon/20">
+                        START VIP TRANSFORMATION
+                    </a>
+                </div>
+
+                <!-- Plan 3: In-Person Coaching -->
+                <div class="bg-brand-card border border-brand-border rounded-3xl p-8 flex flex-col justify-between hover:border-gray-500 transition-all">
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-white uppercase mb-2">1-on-1 Private Training</h3>
+                        <p class="text-xs text-gray-400 mb-6">Exclusive in-person training sessions at partner facilities.</p>
+                        
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-xs text-gray-400">By Application</span>
+                        </div>
+
+                        <ul class="space-y-4 text-xs text-gray-300 border-t border-brand-border pt-6 mb-8">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>100% Personal in-gym guidance</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>Real-time technique correction</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>In-person caliper body fat tracking</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-neon"></i>
+                                <span>Priority schedule booking</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="w-full bg-brand-dark hover:bg-white/10 text-white border border-brand-border font-bold py-3.5 rounded-xl text-center text-xs uppercase tracking-wider transition-all">
+                        Inquire Availability
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section id="faq" class="py-24 px-4 sm:px-8 bg-brand-black border-t border-brand-border">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="text-center space-y-4 mb-16">
+                <span class="px-3 py-1 rounded bg-brand-neon/10 text-brand-neon text-xs font-bold uppercase tracking-widest">
+                    Common Questions
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-black font-display uppercase tracking-tight text-white">
+                    FREQUENTLY ASKED <span class="text-brand-neon">QUESTIONS</span>
+                </h2>
+            </div>
+
+            <!-- Accordion Container -->
+            <div class="space-y-4">
+                
+                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full p-6 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+                        <span>Is online coaching suitable for complete beginners?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-neon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-brand-border/40 pt-4">
+                        Absolutely! Starting with expert instruction prevents you from picking up bad form habits and guarantees faster, safer progress without risking injury.
+                    </div>
+                </div>
+
+                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full p-6 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+                        <span>How quickly can I expect to see tangible results?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-neon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-brand-border/40 pt-4">
+                        By adhering 100% to your custom plan, initial improvements in energy, reduced water weight, and muscle tone occur within 15–30 days. Major physical changes show around month two.
+                    </div>
+                </div>
+
+                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full p-6 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+                        <span>How do I receive my workouts and ongoing feedback?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-neon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-brand-border/40 pt-4">
+                        You'll get access to a mobile coaching app featuring video demonstrations for every movement. Direct communication, progress updates, and form check reviews happen over WhatsApp.
+                    </div>
+                </div>
+
+                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full p-6 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+                        <span>Do I need to train at a specific gym?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-neon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-brand-border/40 pt-4">
+                        No! I design routines customized to your training setting—whether you go to a full commercial gym, use an apartment gym, or work out at home with basic equipment.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / QUICK INTAKE FORM -->
+    <section id="contact" class="py-24 px-4 sm:px-8 bg-brand-dark border-t border-brand-border relative overflow-hidden">
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="bg-brand-card border border-brand-border p-8 sm:p-12 rounded-3xl box-glow-orange">
+                
+                <div class="text-center space-y-4 mb-10">
+                    <span class="px-3 py-1 rounded bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-widest">
+                        Kickstart Your Program
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl font-black font-display uppercase tracking-tight text-white">
+                        APPLY & CONNECT ON <span class="text-brand-neon">WHATSAPP</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm">
+                        Fill out your details so I can review your profile and reply with the best roadmap for your goals.
+                    </p>
+                </div>
+
+                <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Full Name *</label>
+                        <input type="text" id="lead-name" required placeholder="e.g. John Doe" class="w-full bg-brand-dark border border-brand-border rounded-xl p-4 text-white focus:border-brand-neon focus:outline-none text-sm">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-300 mb-2">WhatsApp Number with Country Code *</label>
+                            <input type="tel" id="lead-phone" required placeholder="e.g. +1 (555) 000-0000" class="w-full bg-brand-dark border border-brand-border rounded-xl p-4 text-white focus:border-brand-neon focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Primary Goal *</label>
+                            <select id="lead-goal" class="w-full bg-brand-dark border border-brand-border rounded-xl p-4 text-white focus:border-brand-neon focus:outline-none text-sm">
+                                <option value="Fat Loss & Definition">Fat Loss & Definition</option>
+                                <option value="Muscle Building (Hypertrophy)">Muscle Building (Hypertrophy)</option>
+                                <option value="Conditioning & Health">Conditioning & General Fitness</option>
+                                <option value="Athletic Preparation">Athletic Performance / Prep</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-300 mb-2">What is your biggest obstacle right now?</label>
+                        <textarea id="lead-message" rows="3" placeholder="e.g. Struggling with diet consistency and hitting a plateau in strength..." class="w-full bg-brand-dark border border-brand-border rounded-xl p-4 text-white focus:border-brand-neon focus:outline-none text-sm resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-neon hover:bg-brand-neonHover text-black font-extrabold py-5 rounded-xl transition-all font-display text-2xl tracking-wider uppercase flex items-center justify-center gap-3 shadow-xl shadow-brand-neon/20">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>SEND INTAKE FORM VIA WHATSAPP</span>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-black border-t border-brand-border py-12 px-4 sm:px-8 text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-neon rounded-lg flex items-center justify-center font-black text-black font-display text-lg">
+                    V
+                </div>
+                <span class="font-display text-xl font-bold tracking-wider text-white">VICTOR<span class="text-brand-neon">STORM</span></span>
+            </div>
+
+            <p>© 2026 Victor Storm Personal Training. All rights reserved. NSCA Certified Coach.</p>
+
+            <div class="flex items-center gap-4 text-lg">
+                <a href="#" class="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-gray-300 hover:text-brand-neon transition-colors border border-brand-border">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-gray-300 hover:text-brand-neon transition-colors border border-brand-border">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-gray-300 hover:text-brand-neon transition-colors border border-brand-border">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT CORE LOGIC -->
+    <script>
+        // Sticky Header Glassmorphism Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-panel', 'border-brand-border');
+                navbar.classList.remove('border-transparent', 'py-4');
+                navbar.classList.add('py-3');
+            } else {
+                navbar.classList.remove('glass-panel', 'border-brand-border', 'py-3');
+                navbar.classList.add('border-transparent', 'py-4');
+            }
+        });
+
+        // Mobile Navigation Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Accordion FAQ Logic
+        const faqButtons = document.querySelectorAll('.faq-btn');
+        faqButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Fit Calculator Logic (BMI / BMR / TDEE)
+        function calculateFitMetrics() {
+            const gender = document.getElementById('calc-gender').value;
+            const age = parseFloat(document.getElementById('calc-age').value);
+            const weight = parseFloat(document.getElementById('calc-weight').value);
+            const height = parseFloat(document.getElementById('calc-height').value);
+            const activity = parseFloat(document.getElementById('calc-activity').value);
+
+            if (!age || !weight || !height) {
+                alert('Please fill out all fields in the calculator.');
+                return;
+            }
+
+            // 1. Calc BMI
+            const heightMeters = height / 100;
+            const imc = (weight / (heightMeters * heightMeters)).toFixed(1);
+
+            let imcStatus = '';
+            if (imc < 18.5) imcStatus = 'Underweight';
+            else if (imc < 24.9) imcStatus = 'Normal Weight';
+            else if (imc < 29.9) imcStatus = 'Slightly Overweight';
+            else imcStatus = 'Obese';
+
+            // 2. Calc BMR (Mifflin-St Jeor Equation)
+            let tmb = 0;
+            if (gender === 'male') {
+                tmb = Math.round((10 * weight) + (6.25 * height) - (5 * age) + 5);
+            } else {
+                tmb = Math.round((10 * weight) + (6.25 * height) - (5 * age) - 161);
+            }
+
+            // 3. Calc TDEE
+            const tdee = Math.round(tmb * activity);
+
+            // Display Results
+            document.getElementById('res-imc').innerText = imc;
+            document.getElementById('res-imc-status').innerText = imcStatus;
+            document.getElementById('res-tmb').innerText = tmb;
+            document.getElementById('res-tdee').innerText = tdee;
+
+            document.getElementById('calc-results').classList.remove('hidden');
+            document.getElementById('calc-cta').classList.remove('hidden');
+
+            // Set dynamic WhatsApp link for calculated results
+            const whatsappNumber = '15550000000'; // Personal Trainer WhatsApp
+            const textMsg = encodeURIComponent(
+                `Hi Coach Victor! I ran my fitness calculations on your site:\n\n- BMI: ${imc} (${imcStatus})\n- BMR: ${tmb} kcal\n- Daily Expenditure: ${tdee} kcal\n\nI want to build a custom roadmap with you!`
+            );
+            document.getElementById('calc-whatsapp-btn').href = `https://wa.me/${whatsappNumber}?text=${textMsg}`;
+        }
+
+        // Contact / Lead Form Handler to Direct WhatsApp
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('lead-name').value;
+            const phone = document.getElementById('lead-phone').value;
+            const goal = document.getElementById('lead-goal').value;
+            const message = document.getElementById('lead-message').value;
+
+            const whatsappNumber = '15550000000'; // Replace with trainer number
+            const messageText = `🔥 *NEW COACHING APPLICATION*\n\n` +
+                                `👤 *Name:* ${name}\n` +
+                                `📱 *WhatsApp:* ${phone}\n` +
+                                `🎯 *Primary Goal:* ${goal}\n` +
+                                `💬 *Current Obstacle:* ${message || 'Not specified'}\n\n` +
+                                `I would like to schedule my free evaluation!`;
+
+            const encodedMessage = encodeURIComponent(messageText);
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>
